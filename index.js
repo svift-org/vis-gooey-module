@@ -95,11 +95,11 @@ SVIFT.vis.gooey = (function (data, container) {
       .data(data.data.data)
       .enter()
       .append("text")
-      .text(function(d,i) {return d[0]})
+      .text(function(d,i) {return d[0] + " - " + d[1]})
       .attr("fill", data.style.color.second)
       .attr("text-anchor", "middle")
       .attr("opacity",0)
-      .attr("font-family", data.style.font)
+      .attr("font-family", data.style.fontLables)
 
   };
 

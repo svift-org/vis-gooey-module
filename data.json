@@ -8,6 +8,7 @@
     },
     "style": {
       "font": "DecimaMonoProBold",
+      "fontLables": "Arial",
       "color": {
         "main": "#71609B",
         "second": "#D8D8D8",
