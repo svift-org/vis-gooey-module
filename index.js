@@ -99,6 +99,7 @@ SVIFT.vis.gooey = (function (data, container) {
       .attr("fill", data.style.color.second)
       .attr("text-anchor", "middle")
       .attr("opacity",0)
+      .attr("font-family", data.style.font)
 
   };
 
