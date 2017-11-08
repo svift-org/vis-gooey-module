@@ -1,0 +1,29 @@
+{
+  "name": "svift-vis-gooey",
+  "version": "1.0.0",
+  "definition": {
+    "name": "gooey",
+    "description": "gooey module",
+    "title": "Gooey",
+    "input": "number"
+  },
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "jshint index.js",
+    "build": "node build.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://git@github.com/svift-org/https://github.com/svift-org/vis-gooey-module.git"
+  },
+  "author": "Hans",
+  "license": "MIT",
+  "devDependencies": {
+    "fs": "0.0.1-security",
+    "jshint": "^2.9.5",
+    "node-sass": "^4.5.3",
+    "svift-helper": "git+https://git@github.com/svift-org/helper-module.git",
+    "svift-vis": "git+https://git@github.com/svift-org/vis-module.git"
+  }
+}

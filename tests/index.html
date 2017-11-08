@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8">
+  <style type="text/css">
+    body{
+      margin:0;
+      padding:0;
+      border:0;
+      width:100%;
+      height:100vh;
+    }
+
+    #container{
+      width:100%;
+      height:100vh;
+      display: inline-block;
+      vertical-align: top;
+    }
+  </style>
+  <link rel='stylesheet' href='style.css' type='text/css' media='all' />
+</head>
+<body>
+
+<div id="container"></div>
+
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<script type="text/javascript">
+  SVIFT = {};
+</script>
+<script src="../node_modules/svift-helper/index.js"></script>
+<script src="../node_modules/svift-vis/index.js"></script>
+<script src="../index.js"></script>
+<script type="text/javascript">
+
+  d3.json('../data.json', function(err, data){
+    var vis = SVIFT.vis.gooey(data, d3.select('#container'));
+    vis.init();
+    vis.start();  
+  })  
+
+</script>
+</body>
+</html>
