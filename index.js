@@ -30,7 +30,7 @@ SVIFT.vis.gooey = (function (data, container) {
     }(),
     animation:{
       duration: 6000,
-      gooeyPercent: .7
+      gooeyPercent: .85
     }
   };
 
