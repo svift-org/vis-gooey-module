@@ -61,13 +61,14 @@ SVIFT.vis.gooey = (function (data, container) {
       .append("circle")
       .attr("cx", 0)
       .attr("cy", 0)
-      .style("fill", function(d,i) {return data.style.color.dataColors[i]});
+      .style("fill", function(d,i) {return data.style.color.dataColors[i]})
+
+      ;
 
 
     //Add animations
     var gooeyTime = module.d3config.animation.duration * module.d3config.animation.gooeyPercent;
     var timeSteps = gooeyTime/module.d3config.steps;
-    var time = 0;
     for (var i = 0; i < module.d3config.steps; i++) {
       module.timeline['animation'+i] = {start:timeSteps*i, end: timeSteps*(i+1), func:module["animate"+i]};
     }
@@ -87,7 +88,8 @@ SVIFT.vis.gooey = (function (data, container) {
       .attr("class", "centerCircle")
       .attr("cx",0)
       .attr("cy", 0)
-      .style("fill", data.style.color.dataColors[0])
+      
+
 
     //Add lables
     module.d3config.bubbleLables = module.g.append("g")
@@ -170,7 +172,8 @@ SVIFT.vis.gooey = (function (data, container) {
     }
 
     module.d3config.centerCircle = module.d3config.gooeyContainer.append("circle")
-      .attr("r", cirleAreaTotalFix)
+      .attr("r", largerCircleInterpolations[0](0))
+      .style("fill", data.style.color.dataColors[0])
 
     module.d3config.bubbleLables
       .attr("dx",  function(d,i) {return module.d3config.cxInterpolation[i](1) + (windowWidth/2) })
