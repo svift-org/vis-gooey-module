@@ -29,7 +29,7 @@ SVIFT.vis.gooey = (function (data, container) {
       return colors;
     }(),
     animation:{
-      duration: 1000,
+      duration: 6000,
       gooeyPercent: .85
     }
   };
