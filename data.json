@@ -24,7 +24,9 @@
         ["two",4],
         ["three",3],
         ["four",2],
-        ["five",10],
+        ["fives",50],
+        ["fives",50],
+        ["fives",50],
         ["six",3]
       ],
       "title": "Title",

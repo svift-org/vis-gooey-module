@@ -29,7 +29,7 @@ SVIFT.vis.gooey = (function (data, container) {
       return colors;
     }(),
     animation:{
-      duration: 6000,
+      duration: 1000,
       gooeyPercent: .85
     }
   };
@@ -109,18 +109,18 @@ SVIFT.vis.gooey = (function (data, container) {
 
     //Sizes
     var windowWidth = module.container.node().offsetWidth - module.config.margin.left - module.config.margin.right;
-    var windowHeight = module.container.node().offsetHeight - module.config.margin.top - module.config.margin.bottom;
-    var maxSize = Math.min(windowWidth,windowHeight);
+    var vizHeight = module.container.node().offsetHeight - module.config.margin.top - module.config.margin.bottom - module.config.topTextHeight - module.config.bottomTextHeight;
+    var maxSize = Math.min(windowWidth,vizHeight);
 
     //Create scale
     module.d3config.xScale = d3.scaleLinear()
-      .domain([-1.7, 1.7])
-      .range([-maxSize/2, maxSize/2])
-      // .range([(-maxSize+ module.config.topTextHeight)/2, (maxSize- module.config.topTextHeight)/2]);
-
+      .domain([-1.5, 1.5])
+      .range([-maxSize/1.5, maxSize/1.5])
+ 
+    var centerVizHeigth = (vizHeight/2) + module.config.margin.top + module.config.topTextHeight;
 
     module.d3config.gooeyContainer 
-      .attr("transform", "translate(" + (windowWidth/2) + "," +(windowHeight/2) + ")");
+      .attr("transform", "translate(" + (windowWidth/2) + "," + centerVizHeigth + ")");
 
     //Calc the future positions of the circles and make interpolation functions for each one
     var coordinates = d3.range(module.d3config.steps).map(function(num) {return (num/module.d3config.steps)*(2*Math.PI); });
@@ -177,8 +177,13 @@ SVIFT.vis.gooey = (function (data, container) {
 
     module.d3config.bubbleLables
       .attr("dx",  function(d,i) {return module.d3config.cxInterpolation[i](1) + (windowWidth/2) })
-      .attr("dy",  function(d,i) {return module.d3config.cyInterpolation[i](1) + (windowHeight/2) + circleRadiusSizes[i] + (this.getBBox().height*1.1) })
+      .attr("dy",  function(d,i) {return module.d3config.cyInterpolation[i](1) + centerVizHeigth + circleRadiusSizes[i] + (this.getBBox().height*1.1) })
       .attr("font-size", "0.8em")
+
+    module.goTo(0)
+    module.draw(0);
+
+    console.log("JJJ")
 
   };
 
