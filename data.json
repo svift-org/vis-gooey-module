@@ -22,15 +22,15 @@
       "data":[
         ["one",7],
         ["two",4],
-        ["three",3],
+        ["three",5],
         ["four",2],
-        ["fives",50],
-        ["fives",50],
-        ["fives",50],
+        ["fives",5],
+        ["fives",5],
+        ["fives",5],
         ["six",3]
       ],
-      "title": "Title",
-      "subTitle": "sub title",
+      "title": "Titlge",
+      "subTitle": "SÜub title",
       "attribution": "Some attribution here",
       "source": "source: svift team"
     }

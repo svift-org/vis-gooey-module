@@ -55,6 +55,11 @@ SVIFT.vis.gooey = (function (data, container) {
       .attr('mode','matrix')
       .attr('values','1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7');
 
+    // module.d3config.filter.append('feBlend')
+    //   .attr('in','SourceGraphic')
+    //   .attr('mode','matrix')
+      // .attr('values','1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7');
+
     module.d3config.circles = module.d3config.gooeyContainer.selectAll("circle")
       .data(data.data.data)
       .enter()
@@ -100,7 +105,6 @@ SVIFT.vis.gooey = (function (data, container) {
       .text(function(d,i) {return d[0] + " - " + d[1]})
       .attr("fill", data.style.color.second)
       .attr("text-anchor", "middle")
-      .attr("opacity",0)
       .attr("font-family", data.style.fontLables)
 
   };
@@ -115,9 +119,9 @@ SVIFT.vis.gooey = (function (data, container) {
     //Create scale
     module.d3config.xScale = d3.scaleLinear()
       .domain([-1.5, 1.5])
-      .range([-maxSize/1.5, maxSize/1.5])
+      .range([-maxSize/1.7, maxSize/1.7])
  
-    var centerVizHeigth = (vizHeight/2) + module.config.margin.top + module.config.topTextHeight;
+    var centerVizHeigth = (vizHeight/2) + module.config.topTextHeight  - 3;
 
     module.d3config.gooeyContainer 
       .attr("transform", "translate(" + (windowWidth/2) + "," + centerVizHeigth + ")");
@@ -178,12 +182,17 @@ SVIFT.vis.gooey = (function (data, container) {
     module.d3config.bubbleLables
       .attr("dx",  function(d,i) {return module.d3config.cxInterpolation[i](1) + (windowWidth/2) })
       .attr("dy",  function(d,i) {return module.d3config.cyInterpolation[i](1) + centerVizHeigth + circleRadiusSizes[i] + (this.getBBox().height*1.1) })
-      .attr("font-size", "0.8em")
+      .attr("font-size", "1em")
+      .attr("opacity",0)
 
-    module.goTo(0)
-    module.draw(0);
 
-    console.log("JJJ")
+      // for (var i = 0; i < module.d3config.steps; i++) {
+      //   module["animate"+i](0);
+      //   module["drawBarLable"+i](0);
+      // }
+      // module.draw(0);
+      // module.start();
+      // module.play();
 
   };
 
