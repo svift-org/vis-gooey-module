@@ -19,7 +19,7 @@
     "data":{
       "columns":["Wert"],
       "types":["int"],
-      "data":[
+      "data":[[
         ["one",7],
         ["two",4],
         ["three",5],
@@ -28,7 +28,7 @@
         ["fives",5],
         ["fives",5],
         ["six",3]
-      ],
+      ]],
       "title": "Titlge",
       "subTitle": "SÜub title",
       "attribution": "Some attribution here",
