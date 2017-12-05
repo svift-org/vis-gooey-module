@@ -32,6 +32,7 @@
       "title": "Titlge",
       "subTitle": "SÜub title",
       "attribution": "Some attribution here",
-      "source": "source: svift team"
+      "source": "source: svift team",
+      "format":"single-set"
     }
   }
