@@ -2,27 +2,27 @@ SVIFT.vis.gooey = (function (data, container) {
  
  // Module object
   var module = SVIFT.vis.base(data, container);
-  var firstDataKey = Object.keys(data.data.data)[0];
+  var dataLength = data.data.data.length;
 
   module.d3config = {
-    steps: data.data.data[firstDataKey].length, 
-    allCirlcesInterpolation: d3.interpolate(0,data.data.data[firstDataKey].length),
+    steps: dataLength, 
+    allCirlcesInterpolation: d3.interpolate(0,dataLength),
     ease: d3.easeCubicInOut,
     easeBigCircle: d3.easeExpInOut,
     sizes: function(){
       var sizes = [];
-      for (var i = 0; i < data.data.data[firstDataKey].length; i++) {
-        sizes.push(Math.sqrt(data.data.data[firstDataKey][i][1]/Math.PI))
+      for (var i = 0; i < dataLength; i++) {
+        sizes.push(Math.sqrt(data.data.data[i].data[0]/Math.PI))
       }
       return sizes
     }(),
     circleColorInterpolations: function(){
       var colors = [];
-      for (var i = 0; i < data.data.data[Object.keys(data.data.data)[0]].length; i++) {
+      for (var i = 0; i < dataLength; i++) {
         colors[i] = d3.scaleLinear().domain([0,1])
           .range([d3.rgb(data.style.color.dataColors[i]), d3.rgb(data.style.color.dataColors[i+1])]);
         //for the last bubble use the same color
-        if(i == data.data.data[firstDataKey].length-1){
+        if(i == dataLength-1){
           colors[i] = d3.scaleLinear().domain([0,1])
             .range([d3.rgb(data.style.color.dataColors[i]), d3.rgb(data.style.color.dataColors[i])]);
         }
@@ -62,7 +62,7 @@ SVIFT.vis.gooey = (function (data, container) {
       // .attr('values','1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7');
 
     module.d3config.circles = module.d3config.gooeyContainer.selectAll("circle")
-      .data(data.data.data[firstDataKey])
+      .data(data.data.data)
       .enter()
       .append("circle")
       .attr("cx", 0)
@@ -100,10 +100,10 @@ SVIFT.vis.gooey = (function (data, container) {
     //Add lables
     module.d3config.bubbleLables = module.g.append("g")
       .selectAll("text")
-      .data(data.data.data[firstDataKey])
+      .data(data.data.data)
       .enter()
       .append("text")
-      .text(function(d,i) {return d[0] + " - " + d[1]})
+      .text(function(d,i) {return d.label + " - " + d.data[0]})
       .attr("fill", data.style.color.second)
       .attr("text-anchor", "middle")
       .attr("font-family", data.style.fontLables)
@@ -111,6 +111,9 @@ SVIFT.vis.gooey = (function (data, container) {
   };
 
   module.resize = function () {
+
+    //del everthing
+    // module.d3config.gooeyContainer.selectAll("*").remove();
 
     //Sizes
     var windowWidth = module.container.node().offsetWidth - module.config.margin.left - module.config.margin.right;
@@ -193,7 +196,14 @@ SVIFT.vis.gooey = (function (data, container) {
       // }
       // module.draw(0);
       // module.start();
-      // module.play();
+      // module.d3config.circles
+      //   .attr("cy",  0)
+      //   .attr("cx",  0)
+
+      // module.playHead=0;
+      // module.time.then=0;
+      // module.start();
+      // console.log("JJJJoo")
 
   };
 
