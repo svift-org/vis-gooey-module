@@ -106,7 +106,7 @@ SVIFT.vis.gooey = (function (data, container) {
       .text(function(d,i) {return d.label + " - " + d.data[0]})
       .attr("fill", data.style.color.second)
       .attr("text-anchor", "middle")
-      .attr("font-family", data.style.fontLables)
+      .attr('class', 'labelText')
 
   };
 
