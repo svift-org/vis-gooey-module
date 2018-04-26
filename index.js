@@ -38,7 +38,7 @@ SVIFT.vis.gooey = (function (data, container) {
 
   module.setup = function () {
 
-    module.d3config.gooeyContainer = module.g.append("g")
+    module.d3config.gooeyContainer = module.vizContainer.append("g")
       .style("filter", "url(#gooey)") //Set the filter on the container svg
 
     //SVG filter for the gooey effect
@@ -98,7 +98,7 @@ SVIFT.vis.gooey = (function (data, container) {
 
 
     //Add lables
-    module.d3config.bubbleLables = module.g.append("g")
+    module.d3config.bubbleLables = module.vizContainer.append("g")
       .selectAll("text")
       .data(data.data.data)
       .enter()
@@ -116,19 +116,25 @@ SVIFT.vis.gooey = (function (data, container) {
     // module.d3config.gooeyContainer.selectAll("*").remove();
 
     //Sizes
-    var windowWidth = module.container.node().offsetWidth - module.config.margin.left - module.config.margin.right;
-    var vizHeight = module.container.node().offsetHeight - module.config.margin.top - module.config.margin.bottom - module.config.topTextHeight - module.config.bottomTextHeight;
-    var maxSize = Math.min(windowWidth,vizHeight);
+    // var windowWidth = module.container.node().offsetWidth - module.config.margin.left - module.config.margin.right;
+    // var vizHeight = module.container.node().offsetHeight - module.config.margin.top - module.config.margin.bottom - module.config.topTextHeight - module.config.bottomTextHeight;
+    // var maxSize = Math.min(windowWidth,vizHeight);
+
+
+    var width = module.vizSize.width;
+    var height = module.vizSize.height;
+    var maxSize = Math.min(width,height);
+
 
     //Create scale
     module.d3config.xScale = d3.scaleLinear()
       .domain([-1.5, 1.5])
       .range([-maxSize/1.7, maxSize/1.7])
  
-    var centerVizHeigth = (vizHeight/2) + module.config.topTextHeight  - 3;
+    var centerVizHeigth = (height/2);
 
     module.d3config.gooeyContainer 
-      .attr("transform", "translate(" + (windowWidth/2) + "," + centerVizHeigth + ")");
+      .attr("transform", "translate(" + (width/2) + "," + centerVizHeigth + ")");
 
     //Calc the future positions of the circles and make interpolation functions for each one
     var coordinates = d3.range(module.d3config.steps).map(function(num) {return (num/module.d3config.steps)*(2*Math.PI); });
@@ -184,8 +190,8 @@ SVIFT.vis.gooey = (function (data, container) {
       .style("fill", data.style.color.dataColors[0])
 
     module.d3config.bubbleLables
-      .attr("dx",  function(d,i) {return module.d3config.cxInterpolation[i](1) + (windowWidth/2) })
-      .attr("dy",  function(d,i) {return module.d3config.cyInterpolation[i](1) + centerVizHeigth + circleRadiusSizes[i] + (this.getBBox().height*1.1) })
+      .attr("dx",  function(d,i) {return module.d3config.cxInterpolation[i](1) + (width/2) })
+      .attr("dy",  function(d,i) {return module.d3config.cyInterpolation[i](1) + centerVizHeigth + circleRadiusSizes[i] + (this.getBBox().height*1.2) })
       .attr("font-size", "1em")
       .attr("opacity",0)
 
