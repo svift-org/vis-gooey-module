@@ -196,6 +196,11 @@ SVIFT.vis.gooey = (function (data, container) {
       .attr("opacity",0)
 
 
+    if(module.playHead == module.playTime){
+        module.goTo(1);
+        module.pause();
+    }
+
       // for (var i = 0; i < module.d3config.steps; i++) {
       //   module["animate"+i](0);
       //   module["drawBarLable"+i](0);
