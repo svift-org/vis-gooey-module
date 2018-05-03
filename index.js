@@ -186,7 +186,7 @@ SVIFT.vis.gooey = (function (data, container) {
     }
 
     module.d3config.centerCircle = module.d3config.gooeyContainer.append("circle")
-      .attr("r", largerCircleInterpolations[0](0))
+      // .attr("r", largerCircleInterpolations[0](0))
       .style("fill", data.style.color.dataColors[0])
 
     module.d3config.bubbleLables
