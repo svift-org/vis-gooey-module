@@ -67,9 +67,7 @@ SVIFT.vis.gooey = (function (data, container) {
       .append("circle")
       .attr("cx", 0)
       .attr("cy", 0)
-      .style("fill", function(d,i) {return data.style.color.dataColors[i]})
-
-      ;
+      .style("fill", function(d,i) {return data.style.color.dataColors[i]});
 
 
     //Add animations
@@ -94,8 +92,6 @@ SVIFT.vis.gooey = (function (data, container) {
       .attr("class", "centerCircle")
       .attr("cx",0)
       .attr("cy", 0)
-      
-
 
     //Add lables
     module.d3config.bubbleLables = module.vizContainer.append("g")
@@ -140,11 +136,13 @@ SVIFT.vis.gooey = (function (data, container) {
     var coordinates = d3.range(module.d3config.steps).map(function(num) {return (num/module.d3config.steps)*(2*Math.PI); });
     module.d3config.cyInterpolation = [];
     module.d3config.cxInterpolation = [];
+    module.d3config.labelInterpolation = [];
     for (var i = 0; i < coordinates.length; i++) {
       var cyTarget = module.d3config.xScale(Math.sin(coordinates[i]));
       module.d3config.cyInterpolation.push(d3.interpolate(0,cyTarget));
       var cxTarget = module.d3config.xScale(Math.cos(coordinates[i]));
       module.d3config.cxInterpolation.push(d3.interpolate(0,cxTarget));
+      module.d3config.labelInterpolation.push(d3.interpolate(0,1));
     }
 
     //calc the size of the cirlces
@@ -187,14 +185,13 @@ SVIFT.vis.gooey = (function (data, container) {
 
     module.d3config.centerCircle = module.d3config.gooeyContainer.append("circle")
       // .attr("r", largerCircleInterpolations[0](0))
-      .style("fill", data.style.color.dataColors[0])
+      .style("fill", data.style.color.dataColors[0]);
 
     module.d3config.bubbleLables
       .attr("dx",  function(d,i) {return module.d3config.cxInterpolation[i](1) + (width/2) })
       .attr("dy",  function(d,i) {return module.d3config.cyInterpolation[i](1) + centerVizHeigth + circleRadiusSizes[i] + (this.getBBox().height*1.2) })
       .attr("font-size", "1em")
-      .attr("opacity",0)
-
+      .attr("opacity",0);
 
     if(module.playHead == module.playTime){
         module.goTo(1);
@@ -236,7 +233,7 @@ SVIFT.vis.gooey = (function (data, container) {
   var lableAnimation = function(index){  
     return function(t) { 
       d3.select(module.d3config.bubbleLables._groups[0][index])
-        .attr("opacity",1)
+        .attr("opacity",module.d3config.labelInterpolation[index](module.d3config.ease(t)));
     };
   };
 
