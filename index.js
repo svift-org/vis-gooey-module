@@ -189,7 +189,7 @@ SVIFT.vis.gooey = (function (data, container) {
 
     module.d3config.bubbleLables
       .attr("dx",  function(d,i) {return module.d3config.cxInterpolation[i](1) + (width/2) })
-      .attr("dy",  function(d,i) {return module.d3config.cyInterpolation[i](1) + centerVizHeigth + circleRadiusSizes[i] + (this.getBBox().height*1.2) })
+      .attr("dy",  function(d,i) {return module.d3config.cyInterpolation[i](1) + centerVizHeigth + circleRadiusSizes[i] + (1.2) })
       .attr("font-size", "1em")
       .attr("opacity",0);
 
