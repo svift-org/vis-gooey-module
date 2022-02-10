@@ -22,7 +22,7 @@
   "devDependencies": {
     "fs": "0.0.1-security",
     "jshint": "^2.9.5",
-    "node-sass": "^4.9.0",
+    "node-sass": "^7.0.0",
     "svift-helper": "git+https://git@github.com/svift-org/helper-module.git",
     "svift-vis": "git+https://git@github.com/svift-org/vis-module.git"
   }
